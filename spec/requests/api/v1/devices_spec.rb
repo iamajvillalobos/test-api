@@ -40,5 +40,57 @@ describe 'Devices API', type: :request do
       end
     end
 
+    context 'POST /devices' do
+      context 'when request is valid' do
+        before(:each) do
+          @attributes = FactoryGirl.attributes_for(:device)
+          headers = { "CONTENT_TYPE": "application/vnd.api+json" }
+          params = {
+            "data": {
+              "type": "devices",
+              "attributes": @attributes
+            }
+          }
+
+          post '/api/v1/devices', params: params.to_json, headers: headers
+
+          @json = JSON.parse(response.body)["data"]
+        end
+
+        it 'creates a device' do
+          expect(@json["attributes"]["device_mac"]).to eq @attributes[:device_mac]
+        end
+
+        it 'returns a 201 status code' do
+          expect(response.code).to eq "201"
+        end
+      end
+
+      context 'when request is invalid' do
+        before(:each) do
+          @attributes = {some_field: "some value"}
+          headers = { "CONTENT_TYPE": "application/vnd.api+json" }
+          params = {
+            "data": {
+              "type": "devices",
+              "attributes": @attributes
+            }
+          }
+
+          post '/api/v1/devices', params: params.to_json, headers: headers
+
+          @json = JSON.parse(response.body)["errors"]
+        end
+
+        it 'returns a status code 400' do
+          expect(response.code).to eq "400"
+        end
+
+        it 'returns an error message of param not allowed' do
+          expect(@json.any? { |error| error[:title] = "Param not allowed" }).to be true
+        end
+      end
+    end
+
   end
 end
