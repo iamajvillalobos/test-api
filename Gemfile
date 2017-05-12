@@ -11,4 +11,11 @@ gem 'rails', '5.1.0'
 
 group :development, :test do
   gem 'pry', '0.10.4'
+  gem 'rspec-rails', '3.5'
+end
+
+group :test do
+  gem 'factory_girl_rails', '4.8.0'
+  gem 'faker', '1.7.3'
+  gem 'database_cleaner', '1.6.1'
 end
