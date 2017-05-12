@@ -9,6 +9,7 @@ gem 'pg', '0.18.4'
 gem 'puma', '3.7'
 gem 'rails', '5.1.0'
 gem 'rack-cors', '0.4.0'
+gem 'jsonapi-resources', '0.9.0'
 
 group :development, :test do
   gem 'pry', '0.10.4'
