@@ -14,6 +14,12 @@ group :development, :test do
   gem 'rspec-rails', '3.5'
 end
 
+group :development do
+  gem 'listen', '3.1.5'
+  gem 'spring', '2.0.1'
+  gem 'spring-watcher-listen', '2.0.1'
+end
+
 group :test do
   gem 'factory_girl_rails', '4.8.0'
   gem 'faker', '1.7.3'
