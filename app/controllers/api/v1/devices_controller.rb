@@ -1,6 +1,2 @@
-class Api::V1::DevicesController < ApplicationController
-  def index
-    @devices = Device.all
-    render json: @devices, status: 200
-  end
+class Api::V1::DevicesController < JSONAPI::ResourceController
 end

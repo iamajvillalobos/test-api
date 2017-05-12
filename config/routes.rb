@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :devices, only: [:index]
+      jsonapi_resources :devices
     end
   end
 end
