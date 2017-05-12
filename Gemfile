@@ -25,3 +25,5 @@ group :test do
   gem 'faker', '1.7.3'
   gem 'database_cleaner', '1.6.1'
 end
+
+ruby '2.4.1'
