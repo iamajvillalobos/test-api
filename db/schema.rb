@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170512082223) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "devices", force: :cascade do |t|
     t.string "device_mac"
     t.string "serial_no"
