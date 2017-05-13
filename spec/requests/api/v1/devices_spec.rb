@@ -92,5 +92,30 @@ describe 'Devices API', type: :request do
       end
     end
 
+    context 'PUT /devices/:id' do
+      context 'when record exist' do
+        before(:each ) do
+          headers = { "CONTENT_TYPE": "application/vnd.api+json" }
+          @device = FactoryGirl.create(:device)
+          @attribute = { name: '1234ED'}
+          params = {
+            "data": {
+              "id": "#{@device.id}",
+              "type": "devices",
+              "attributes": @attribute
+            }
+          }
+
+          put "/api/v1/devices/#{@device.id}", headers: headers, params: params.to_json
+
+          @json = JSON.parse(response.body)["data"]
+        end
+
+        it 'updates the record' do
+          expect(@json["attributes"]["name"]).to eq @attribute[:name]
+        end
+      end
+    end
+
   end
 end
