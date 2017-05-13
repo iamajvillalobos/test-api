@@ -117,5 +117,18 @@ describe 'Devices API', type: :request do
       end
     end
 
+    context 'DELETE /devices/:id' do
+      before(:each) do
+        headers = { "CONTENT_TYPE": "application/vnd.api+json" }
+        @device = FactoryGirl.create(:device)
+
+        delete "/api/v1/devices/#{@device.id}", headers: headers
+      end
+
+      it 'return a status code of 204' do
+        expect(response.code).to eq "204"
+      end
+    end
+
   end
 end
